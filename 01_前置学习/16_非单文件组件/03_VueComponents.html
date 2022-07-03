@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue2.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script>
+        const student = Vue.extend({
+            data(){
+                return {
+                    name:'tom',
+                    age:18
+                }
+            },
+            template:`
+                <div>
+                    <h3>{{name}}</h3>
+                    <h3>{{age}}</h3>
+                </div>
+            `
+        })
+        const app = Vue.extend({
+            template:`<div>
+                        <h3>{{msg}}</h3>
+                        <student></student>
+                    </div>
+            `,
+            components:{
+                student:student
+            },
+            data() {
+                return {
+                    msg:"this is app"
+                }
+            },
+        })
+        new Vue({
+            template:`<div>
+                    <h3>{{msg}}</h3>
+                    <app></app>
+                    </div>
+            `,
+            el:"#root",
+            data:{
+                msg:'this is root '
+            },
+            components:{
+                app:app,
+            }
+        })
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue2.js"></script>
+</head>
+<body>
+    <!-- 想改变数组，不能直接操作索引值，需要用数组方法  push sublice shift等 -->
+    <!-- vue对数组的监测，是包装数组的原生方法实现的 -->
+    <div id="root">
+        <h2>{{student.name}}</h2>
+        <h3>sex:{{student.sex}}</h3>
+        <h3>rage:{{age.rage}}---sage:{{age.sage}}</h3>
+        <h3>hobby</h3>
+        <ul>
+            <li v-for="(h,index) in hobby" ::key="index">
+                {{h}}
+            </li>
+        </ul>
+        <h3>friends</h3>
+        <ul>
+            <li v-for="(f,index) in friends" ::key="index">
+                {{f.name}}---{{f.age}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        let vm = new Vue({
+            el:'#root',
+            data:{
+                student:{
+                    name:'tom',  
+                    sex:'male', 
+                },
+
+                age:{
+                    rage:18,
+                    sage:20,
+                },
+                hobby:['a','b','c'],
+                friends:[
+                    {name:'jack',age:30},
+                    {name:'tony',age:26}
+            ]
+            },
+        })
+
+    </script>
+    
+</body>
+</html>

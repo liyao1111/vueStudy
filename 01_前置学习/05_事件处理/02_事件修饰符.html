@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue2.js"></script>
+</head>
+<style>
+    .demo1 {
+        width: 500px;
+        height: 100px;
+        background-color: #bfa;
+        border: 3px skyblue solid
+    }
+
+    .demo2 {
+        width: 500px;
+        height: 100px;
+        background-color: skyblue;
+        border: 3px skyblue solid
+    }
+
+    .box1 {
+        width: 500px;
+        height: 100px;
+        background-color: plum;
+        border: 3px skyblue solid
+    }
+
+    .box2 {
+        margin-top: 20px;
+        width: 300px;
+        height: 50px;
+        background-color: aqua;
+    }
+
+    .demo3 {
+        width: 500px;
+        height: 100px;
+        background-color: rosybrown;
+        border: 3px skyblue solid
+    }
+    .demo4{
+        width: 300px;
+        height: 300px;
+        background-color: violet;
+        overflow: auto;
+    }
+    .demo4 li {
+        height: 150px;
+    }
+</style>
+
+<body>
+    <!-- vue中的 事件修饰符：
+        1.prevent 阻止默认事件   !!
+        2.stop 阻止事件冒泡      !!
+        3.once 事件只触发一次    !!
+        4.capture 使用事件的捕获模式
+        5.self 只有event.target是当前操作的元素时才触发事件
+        6.passive 事件默认行为立即执行，无需等待事件回调执行完毕
+     -->
+    <div id="root">
+        <h3>{{name}}</h3>
+        <a href="www.baidu.com" @click.prevent="showInfo">阻止默认事件</a>
+        <!-- 典型的事件冒泡 -->
+        <!-- 阻止事件冒泡 -->
+        <div class="demo1" @click="showInfo">
+            <button @click.stop="showInfo">click</button>
+        </div>
+
+        <!-- 事件只触发一次 -->
+        <div class="demo2">
+            <button @click.once="showInfo">事件触发一次</button>
+        </div>
+
+        <!-- capture 使用事件的捕获模式 -->
+        <div class="box1" @click.capture="showMsg('box1')">
+            box1
+            <div class="box2" @click="showMsg('box2')">
+                box2
+            </div>
+        </div>
+
+        <!-- self 只有event.target是当前操作的元素时才触发事件 -->
+        <div class="demo3" @click.self="showInfo">
+            <button @click="showInfo">提示信息</button>
+        </div>
+
+        <!-- passive -->
+        <ul @wheel.passive="demo" class="demo4" >
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+
+
+    </div>
+    <script>
+        let vm = new Vue({
+            el: '#root',
+            data: {
+                name: 'jack',
+            },
+            methods: {
+                showInfo: (e) => {
+                    alert(123)
+                    console.log(e.target)
+                },
+                showMsg: (msg) => {
+                    console.log(msg)
+                },
+                demo:() => { 
+                    for(let i = 0; i < 100000; i++){
+                        console.log('#')
+                    }
+                 }
+            }
+
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue3.js"></script>
+</head>
+
+<body>
+
+    <!-- 
+        1.插值语法：
+            功能：解析标签体内容
+            写法：{{xxx}}  xxx是js表达式，可以直接读取到data中所有属性
+        2.指令语法：
+            功能：解析标签（标签属性、标签体内容、绑定事件）
+            例；v-bind：href="url"  / :href="url" url是js表达式
+     -->
+    <div id="app">
+        <!-- 告诉vue 里面放了一个变量 -->
+        <h2>插值语法</h2>
+        <p>hell0,{{name}}</p>
+        <hr>
+        <h2>指令语法</h2>
+        <a v-bind:href="url">v3</a>
+        <br>
+        <!-- v-bind ===> :   -->
+        <a :href="url2">bl</a>
+    </div>
+    <script type="text/javascript">
+        const insertPar = {
+            data: () => {
+                return {
+                    name: 'tom',
+                    url: 'https://vue3js.cn/',
+                    url2: 'https://www.bilibili.com/'
+                }
+            }
+        }
+        Vue.createApp(insertPar).mount('#app')
+    </script>
+
+
+</body>
+
+</html>

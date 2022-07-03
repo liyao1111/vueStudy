@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue2.js"></script>
+</head>
+
+<body>
+    <!--                v-on:click     ===     @click
+     -->
+    <div id="root">
+        <h2>{{name}}---{{age}}</h2>
+        <button v-on:click="showInfo1">v-on:click</button>
+        <br>
+        <!-- $占位 -->
+        <button @click="showInfo2(66,$event)">@click</button>
+    </div>
+    <script>
+
+        let vu = new Vue({
+            el: '#root',
+            data: {
+                name: 'tom',
+                age: 18,
+            },
+            methods: {
+                showInfo1: function() {
+                  console.log(123)
+                },
+                showInfo2:(number,event) => {
+                    console.log('num：',number)
+                    console.log('event:',event) 
+
+                 }
+        }})
+    </script>
+
+
+</body>
+
+</html>

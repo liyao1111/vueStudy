@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue2.js"></script>
+</head>
+<body>
+    <div id="root">
+        <app></app>
+    </div>
+    <script>
+        const school = Vue.extend({
+            template:`
+                <div>
+                    {{name}}
+                    {{address}}
+                </div>
+            `,
+            data() {
+                return {
+                    name:'schoolAAA',
+                    address:'AAAaddr'
+                }
+            },
+        })
+        const student = Vue.extend({
+            template:`
+                <div>
+                    <h3>{{name}}</h3>
+                    <h3>{{age}}</h3>
+                </div>
+            `,
+            data() {
+                return {
+                    name:'tom',
+                    age:18
+                }
+            },
+        })
+        const app = Vue.extend({
+            template:`
+                <div>
+                    <h3>{{msg}}</h3>
+                    <school><school/>
+                    <hr>
+                    <student></student>
+                 </div>
+            `,
+            data() {
+                return {
+                    msg:'hello app'
+                }
+            },
+            components:{
+                school,
+                student,
+            }
+        })
+        const vm = new Vue({
+            template:`<h2>{{msg}}<app></app></h2>`,
+            el:'#root',
+            data:{
+                msg:'this is vm-root'
+            },
+            components:{
+                app
+            }
+
+        })
+    </script>
+    
+</body>
+</html>

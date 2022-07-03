@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue3.js"></script>
+</head>
+<body>
+    <!-- 
+        M:模型model 对应data数据
+        V:视图view 模板
+        VM:视图模型viewmodel vue实例对象
+     -->
+    <div id="root">
+        <h3>{{name}}</h3>
+        <h3>{{age}}</h3>
+    </div>
+    <script>
+        const vue={
+            data:() => { 
+                return{
+                    name:'tom',
+                    age:18,
+                }
+             }
+        }
+        const vm =Vue.createApp(vue)
+        vm.mount('#root')
+        console.log(vm)
+    </script>
+    
+</body>
+</html>

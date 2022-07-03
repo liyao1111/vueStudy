@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue2.js"></script>
+</head>
+
+<body>
+    <!-- 
+        收集表单数据：
+            1.type=text v-model收集value值 用户输入就是value值
+            2.type=radio v-model收集value值 要给标签配备value值
+            3.type=checkbox 
+                1.没有配备value属性，收集的就是checked（bool）
+                2.配置了value：
+                    1.v-model初始值是非数组，收集的就是checked
+                    2.v-mdel初始值为数组，收集的就是value组成的数组
+            备注：v-model的三个修饰符
+                lazy：失去焦点再收集数据
+                number：输入字符串转为有效数字
+                trim：输入首尾空格过滤
+     -->
+    <div id="root">
+        <form action="" @submit.prevent="submit">
+            <!-- trim 忽略开头空格 -->
+            帐号:<input v-model.trim="userInfo.account"><br>  
+            密码:<input type="password" v-model="userInfo.password"><br>
+            <!-- 年龄限制数字 -->
+            年龄:<input type="number" v-model.number="userInfo.age"><br>
+            性别:
+            男:<input value='male' type="radio" name="sex" v-model="userInfo.sex">
+            女:<input value='female' type="radio" name="sex" v-model="userInfo.sex">
+            <br>
+            爱好:
+            学习<input type="checkbox" value="study" v-model="userInfo.hobby">
+            打游戏:<input type="checkbox" value="game" v-model="userInfo.hobby">
+            吃饭:<input type="checkbox" value="eat" v-model="userInfo.hobby">
+            <br>
+            地址:
+            <select name="" id="" v-model="userInfo.address">
+                <option value="">select address</option>
+                <option value="beijing">北京</option>
+                <option value="shanghai">上海</option>
+                <option value="shenzhen">深圳</option>
+            </select>
+            <br><br>
+            其他信息:
+            <!--  lazy: textarea失去焦点才上传 -->
+            <textarea v-model.lazy="userInfo.otherInfo" name="" id="" cols="30" rows="10"></textarea>
+            <br>
+            <input type="checkbox" v-model="userInfo.agree"> 阅读并接受<a href="#">用户协议</a>
+            <button >提交</button>
+
+
+        </form>
+    </div>
+    <script>
+        let vm = new Vue({
+            el: '#root',
+            data: {
+                userInfo: {
+                    account: '',
+                    password: '',
+                    sex: '',
+                    age:'',
+                    hobby: [],
+                    address: '',
+                    otherInfo: '',
+                    agree: '',
+                },
+            },
+            methods: {
+                submit(){
+                    console.log(JSON.stringify(this.userInfo))
+                },
+            },
+        })
+    </script>
+
+</body>
+
+</html>

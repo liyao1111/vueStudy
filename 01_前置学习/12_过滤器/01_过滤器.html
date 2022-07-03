@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue2.js"></script>
+    <!-- <script src="../day.js"></script> -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/dayjs/1.11.3/dayjs.min.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2>显示格式化后的事件</h2>
+        <h3>现在是:{{time}}</h3>
+        <!-- 计算属性实现 -->
+        <h3>转换后:{{fmtTime}}</h3>
+        <!-- methods实现 -->
+        <h3> methods转换:{{getFmtTime()}}</h3>
+        <!-- 过滤器实现 -->
+        <h3>过滤器1实现:{{time|timeFormater}}</h3>
+        <!-- 过滤器传参 -->
+        <h3>过滤器2实现:{{time|timeFormater('YYYY-MM-DD HH:mm:ss')}}</h3>
+        <h3>过滤器串联:{{time|timeFormater('YYYY_MM_DD')|myslice}}</h3>
+    </div>
+    <script>
+        let vm = new Vue({
+            el: '#root',
+            data: {
+                time: Date.now()
+            },
+            computed: {
+                fmtTime() {
+                    return dayjs(this.time).format('YYYY-MM-DD HH:mm:ss')
+                }
+            },
+            methods: {
+                getFmtTime() {
+                    return dayjs(this.time).format('YYYY-MM-DD HH:mm:ss')
+                },
+            },
+            filters:{
+                timeFormater(value1,value2='YYYY-MM-DD HH:mm:ss'){
+                    console.log('val2:',value2)
+                    return dayjs(value1).format(value2)
+                },
+                myslice(val){
+                    return val.slice(0,4)
+                }
+
+            },
+        })
+    </script>
+
+</body>
+
+</html>

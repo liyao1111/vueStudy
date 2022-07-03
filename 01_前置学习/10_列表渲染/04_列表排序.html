@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue2.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2>{{name}}</h2>
+        <input type="text" placeholder="输入搜索条件" v-model="keyWords">
+        <button @click="sortType=1">年龄升序</button>
+        <button @click="sortType=2">年龄降序</button>
+        <button @click="sortType=0">原顺序</button>
+        <ul>
+            <li v-for="p of filPerson" ::key="p.id">
+                {{p.name}}--{{p.age}}--{{p.sex}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        Vue.config.productionTip = false
+        let vm = new Vue({
+            el: '#root',
+            data: {
+                sortType: 0,  //  o原序 1升序 2降序
+                name: '列表过滤',
+                keyWords: '',
+                persons: [
+                    { id: '001', name: "jack", age: 19, sex: '男' },
+                    { id: '001', name: "rose", age: 52, sex: '女' },
+                    { id: '001', name: "tom", age: 30, sex: '男' },
+                    { id: '001', name: "alice", age: 35, sex: '女' },
+                ],
+            },
+            computed: {
+                filPerson() {
+                    const arr = this.persons.filter((p) => {
+                        return p.name.indexOf(this.keyWords) !== -1
+                    })
+                    if(this.sortType){
+                        arr.sort((p1,p2) => { 
+                            return this.sortType===1? p1.age-p2.age:p2.age-p1.age
+                         })
+                    }
+                    return arr
+
+                }
+            },
+            // watch实现
+            // watch:{
+            //     keyWords:{
+            //         immediate:true,
+            //         handler(val){
+            //             this.filPersons =  this.persons.filter((p) => { 
+            //                 return p.name.indexOf(val) !== -1
+
+            //              })
+            //         }
+            //     }
+
+            // },
+        })
+    </script>
+</body>
+
+</html>

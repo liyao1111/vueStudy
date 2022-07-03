@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue2.js"></script>
+</head>
+
+<body>
+    <!--1.vue中常用的按键别名
+        回车    enter
+        删除    delete
+        退出    esc
+        空格    space
+        换行    tab      配合keydown
+        上      up
+        下      down
+        左      left
+        右      right
+    2.vue未提供别名的按键，可使用按键的原始key绑定 注意转为keyab-case(小写)
+    3.系统修饰键 ctrl  alt shift  meta
+        （1） 配合keyup使用 按下修饰键同时 按下其他键随后释放其他键，事件才会触发
+        （2） 配合keydown使用 正常触发事件
+    4.使用keyCode指定具体按键
+    5.Vue.Config.keyCodes.自定义键名=键码 定制按键别名
+        
+    -->
+    <div id="root">
+        {{name}}
+        <br>
+        <input @keyup.esc="showInfo" type="text " placeholder="输入">
+    </div>
+    <script>
+        let vm = new Vue({
+            el: '#root',
+            data: {
+                name: 'tom',
+            },
+            methods: {
+                showInfo: (e) => {
+                    console.log(e.target.value)
+                }
+            }
+
+        })
+    </script>
+
+</body>
+
+</html>

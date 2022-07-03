@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue2.js"></script>
+    <style>
+        .basic {
+            width: 500px;
+            height: 300px;
+            background-color: #bfa;
+        }
+
+        .normal {
+            border: 3px burlywood dotted
+        }
+
+        .happy {
+            border: 5px red dashed
+        }
+
+        .sad {
+            border: 3px blue dotted
+        }
+        .basic1{
+            width: 300px;
+            height: 300px;
+        }
+        .basic2{
+            background-color: skyblue;
+        }
+        .basic3{
+            border:10px blue dashed
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <h3>{{name}}</h3>
+        <!-- 绑定class样式--字符串写法，适用于：样式类名不确定，需要动态指定 -->
+        <div class="basic" :class="mood" @click="changeMood"></div>
+        <!-- 绑定class样式--数组写法 适用于 ：杨绑定的样式个数不确定，名字也不确定 -->
+        <div :class="classArr" ></div>
+        <!-- 绑定class样式--对象写法 适用于：要绑定的样式确定、名字确定，弹药动态决定用不用 -->
+        <div :class="classObj"></div>
+    </div>
+    <script>
+        let vm = new Vue({
+            el: "#root",
+            data: {
+                name: "样式设计",
+                mood: 'normal',
+                classArr:['basic1','basic2','basic3'],
+                classObj:{
+                    basic1:true,
+                    basic2:false,
+                    basic3:true
+                }
+                
+            },
+            methods: {
+                changeMood() {
+                    const arr = ['normal', 'happy', 'sad']
+                    const index =Math.floor(Math.random() * 3)
+                    console.log(arr[index])
+                    this.mood = arr[index]
+
+
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

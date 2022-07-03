@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue2.js"></script>
+    <style>
+        .n{
+            width: 200px;
+            height: 100px;
+            border:3px red dotted
+        }
+        .first{
+            background-color: red;
+        }
+        .second{
+            background-color: blue;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div id="root">
+        <!-- 使用v-show做条件渲染 -->
+        <h3 v-show="false">{{name}}</h3>
+        <!-- v-if -->
+        <h3 v-if="true">{{name}}</h3>
+        <h2>当前n为:{{n}}</h2>
+        <button @click="add">n+1</button>
+        <div>
+            <!-- 需求：n=1展示一个div n=2展示一个div ... -->
+            <div class="n first" v-show="n===1">n=1</div>
+            <div class="n second" v-show="n===2">n=2</div>
+            <div class="n third" v-show="n===3">n=3</div>
+            <div class="n fourth" v-show="n===4">n=4</div>
+        </div>
+        <!-- v-if  v-else-if v-else -->
+        <!-- 不可被打断 -->
+        <!-- ---------------------------------------- -->
+        <!-- v-if 与template的配合使用 -->
+        <template v-if="n===2">
+            <h3>angular</h3> 
+            <h3>vue</h3>
+            <h3>react</h3>
+        </template>
+
+    </div>
+    <script>
+        let vm = new Vue({
+            el: '#root',
+            data: {
+                name: "条件渲染",
+                n:1,
+            },
+            methods:{
+                add(){
+                    this.n++
+                },
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue2.js"></script>
+</head>
+<body>
+    <div id="root">
+        <span>xing:</span><input type="text" v-model="lastName"><br><br>
+        <span>ming:</span><input type="text" v-model="firstName"><br><br>
+        <span>quanming:</span> <span>{{lastName}}-{{firstName}}</span><br><br>
+        <span>quanming(watch实现):</span><span>{{fullName}}</span>
+    </div>
+    <!-- 
+        watch与computed对比
+            1.computed可完成的功能，watch都可完成
+            2.watch可完成的computed不一定可完成，例：watch可进行异步操作
+        两个重要原则：
+            1.所有vue管理的函数最好写成普通函数，这样this指向才是vm或组件实例对象
+            2.所有不被vue管理的函数（定时器回调函数、ajax回调函数、promise函数），最好写成箭头函数
+                这样this指向才是vm或组件实例对象
+
+     -->
+    <script>
+        let vm = new Vue({
+            el:'#root',
+            data:{
+                lastName:"zhang",
+                firstName:"san",
+                fullName:'zhang-san'  
+            },
+            watch:{
+                lastName(newV){
+                    this.fullName = `${newV}-${this.firstName}`
+                },
+                firstName(newV){
+                    this.fullName = `${this.lastName}-${newV}`
+                }
+            }
+
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue2.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <school></school>
+        <hr>
+        <student></student>
+
+    </div>
+    <script>
+        const school = Vue.extend({
+            template: `
+                <div>
+                    <h3>school:{{schoolName}}</h3>
+                    <h3>address:{{address}}</h3>
+                </div>
+                `,
+            data() {
+                return {
+                    schoolName: 'school1',
+                    address: 'sadd'
+                }
+            }
+        })
+        const student = Vue.extend({
+            template: `
+                <div>
+                    <h3>name:{{studentName}}</h3>
+                    <h3>age:{{age}}</h3>
+                </div>
+                `,
+            data() {
+                return {
+                    studentName: 'tom',
+                    age: 18
+                }
+            },
+        })
+
+        new Vue({
+            el: "#root",
+            components: {
+                school,
+                student
+            }
+        })
+
+    </script>
+
+</body>
+
+</html>

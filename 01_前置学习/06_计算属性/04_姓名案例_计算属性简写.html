@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue2.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <span>姓:</span><input type="text" v-model="lastName">
+        <br><br>
+        <span>名:</span><input type="text" v-model="firstName">
+        <br><br>
+        <span>全名:</span><span>{{fullName}}</span>
+    </div>
+    <script>
+        let vm = new Vue({
+            el: "#root",
+            data: {
+                lastName: "张",
+                firstName: "三"
+            },
+            computed: {
+                // 完整写法
+                // fullName: {
+                //     get(){
+                //         return `${this.lastName}-${this.firstName}`
+                //     },
+                //     set(value){
+                //         const arr = value.split('-')
+                //         this.lastName = arr[0]
+                //         this.firstName = arr[1]
+                        
+                //     }
+                // }
+                // 精简写法 只考虑读取不考虑修改
+                fullName(){
+                    console.log('get调用')
+                    return `${this.lastName}-${this.firstName}`
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>

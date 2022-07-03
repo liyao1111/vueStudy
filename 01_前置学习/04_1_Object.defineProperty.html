@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue3.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h3>{{name}}</h3>
+    </div>
+    <script>
+        let number=19
+        let person={
+            name:"jack",
+            age:number,
+            sex:'male'
+        }
+        Object.defineProperty(person,'age',{
+            // value:30,
+            // enumerable:true,//控制属性是否可枚举，默认false
+            // writable:true,//控制属性是否可被修改默认false
+            // configurable:true, //控制属性是否可被删除 默认false
+            get:function(){
+                console.log('读取了age属性')
+                return number
+            }
+        })
+        console.log(person)
+    </script>
+    <script>
+        const vue = {
+            data:() => { 
+              return{
+                name:'tom',
+              }  
+             }
+        }
+        const v3 = Vue.createApp(vue).mount('#root')
+    </script>
+    
+</body>
+</html>
